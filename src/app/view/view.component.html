@@ -1,0 +1,107 @@
+<router-outlet></router-outlet>
+<h1>Formulaire interactif de contact</h1>
+
+<span class="d-flex flex-column">
+  <div class="d-inline-flex p-2 justify-content-start">
+
+      <button type="button" class="btn btn-primary" *ngIf="etape==1" (click)="step1('vitrine')">Site Vitrine</button>
+      <button type="button" class="btn btn-secondary" *ngIf="etape==1" (click)="step1('fonctionnel')" >Site Fonctionnel</button>
+
+  </div>
+  <div class="d-inline-flex p-2 justify-content-start">
+      <button type="button" class="btn btn-primary" *ngIf="etape==2" (click)="step2('possède une charte graphique')">J'ai une charte graphique déjà élaborée</button>
+      <button type="button" class="btn btn-secondary" *ngIf="etape==2" (click)="step2('ne possède pas de charte graphique')" >Je ne possède pas de charte graphique et je souhaite que Junior Atlantique m'aide à en développer une</button>
+  </div>
+  <div class="d-inline-flex p-2">
+      <button type="button" class="btn btn-primary" *ngIf="etape==3" (click)="step3('possède un hebergeur')">J'ai déjà réfléchi à un hébergeur et possède un nom de domaine et un hébergeur</button>
+      <button type="button" class="btn btn-secondary" *ngIf="etape==3" (click)="step3('ne possède pas de solution dhebergement mais a réfléchi')" >J'ai déjà réfléchi à la question et souhaite un hébergeur bien précis, mais je n'ai pas encore procédé aux démarches</button>
+      <button type="button" class="btn btn-secondary" *ngIf="etape==3" (click)="step3('ne possède pas de solution dhebergement')" >Je ne sais pas ce que c'est et souhaite être conseillé par Junior Atlantique</button>
+
+  </div>
+   <div>
+      <button type="button" class="btn btn-primary d-flex justify-content-around" *ngIf="etape==4" (click)="step4('evolution possible')">Je souhaite dans un second temps faire évoluer mon site et lui ajouter des fonctionnalités(pas spécialement dans le cadre de ce projet en particulier)</button>
+      <button type="button" class="btn btn-secondary d-flex justify-content-around" *ngIf="etape==4" (click)="step4('aucune evolution prevue')" >Je n'envisage pas de faire évoluer mon site</button>
+  </div>
+  <div>
+      <form (ngSubmit)="onSubmitStep5(f)" #f="ngForm">
+      <input type="text" id="page" class="form-control" name="page" *ngIf="etape==5" ngModel>
+        <button type="button" class="btn btn-primary" *ngIf="etape==5" type="submit">Valider</button>
+      <button type="button" class="btn btn-secondary" *ngIf="etape==5" (click)="step5('pas de taille envisagée')" >Aucun site ne ressemble à ce que je désire</button>
+      </form>
+  </div>
+   <div>
+      <button type="button" class="btn btn-primary d-flex justify-content-around" *ngIf="etape==6" (click)="step6('pas de referencement souhaite')">Je souhaite faire référencer mon site afin qu'il puisse apparaître sur les moteur de recherche le plus fréquemment possible</button>
+      <button type="button" class="btn btn-secondary d-flex justify-content-around" *ngIf="etape==6" (click)="step6('desire être reference')" >Je n'envisage pas de faire évoluer mon site</button>
+  </div>
+   <div>
+      <form (ngSubmit)="onSubmitStep7(g)" #g="ngForm">
+      <input type="text" id="budget" class="form-control" name="budget" *ngIf="etape==7" ngModel>
+        <button type="button" class="btn btn-primary" *ngIf="etape==7" type="submit">Valider</button>
+      <button type="button" class="btn btn-secondary" *ngIf="etape==7" (click)="step7('pas de budget')" >Pas de budget précis</button>
+      </form>
+  </div>
+  <div>
+      <form (ngSubmit)="onSubmitStep8(h)" #h="ngForm">
+      <input type="text" id="cms" class="form-control" name="cms" *ngIf="etape==8" ngModel>
+        <button type="button" class="btn btn-primary" *ngIf="etape==8" type="submit">Valider</button>
+      <button type="button" class="btn btn-secondary" *ngIf="etape==8" (click)="step8('ne connait pas')" >Je ne sais pas ce que c'est</button>
+        <button type="button" class="btn btn-secondary" *ngIf="etape==8" (click)="step8('pas de cms')" >Non, je ne veux pas</button>
+      </form>
+  </div>
+  <div>
+    <h3 *ngIf="etape==9">Souhaitez-vous que votre site s'adapte aux téléphones et aux tablettes ?</h3>
+      <button type="button" class="btn btn-primary d-flex justify-content-around" *ngIf="etape==9" (click)="step9('Reponsive')">Oui</button>
+      <button type="button" class="btn btn-secondary d-flex justify-content-around" *ngIf="etape==9" (click)="step9('Non responsive')" >Non</button>
+  </div>
+ <div>
+   <h3 *ngIf="etape==10">Souhaitez-vous que votre site permette de faire des achats en ligne ?</h3>
+      <button type="button" class="btn btn-primary d-flex justify-content-around" *ngIf="etape==10" (click)="step10('e-commerce')">Oui</button>
+      <button type="button" class="btn btn-secondary d-flex justify-content-around" *ngIf="etape==10" (click)="step10('pas de e-commerce')" >Non</button>
+  </div>
+  <div>
+   <h3 *ngIf="etape==11">Envisagez-vous un système de compte ?</h3>
+      <button type="button" class="btn btn-primary d-flex justify-content-around" *ngIf="etape==11" (click)="step11('e-commerce')">Oui</button>
+      <button type="button" class="btn btn-secondary d-flex justify-content-around" *ngIf="etape==11" (click)="step11('pas de e-commerce')" >Non</button>
+  </div>
+  <div>
+   <form (ngSubmit)="onSubmitStep12(g)" #g="ngForm">
+     <textarea id="fonction" name="fonction"  *ngIf="etape==12" ngModel></textarea>
+        <button type="button" class="btn btn-primary" *ngIf="etape==12" type="submit">Valider</button>
+      <button type="button" class="btn btn-secondary" *ngIf="etape==12" (click)="step12('pas de fonctionnalites particuliere')" >Pas de fonctionnaités précises</button>
+      </form>
+  </div>
+   <div *ngIf="etape==13">
+   <h3 >Souhaitez vous avoir une interface administrateur dédié à la gestion et à l'administration de votre site ?</h3>
+      <button type="button" class="btn btn-primary d-flex justify-content-around" (click)="step13('interface')">Oui</button>
+      <button type="button" class="btn btn-secondary d-flex justify-content-around" (click)="step13('pas pas dinterface')" >Non</button>
+      <button type="button" class="btn btn-secondary d-flex justify-content-around" (click)="step13('ne sais pas')" >Je ne sais pas</button>
+  </div>
+  <div *ngIf="etape==14">
+      <form (ngSubmit)="validationFormulaire(b)" #b="ngForm">
+        <h4>Votre nom:*</h4>
+        <input type="text" id="nom" class="form-control" name="nom"  ngModel required>
+        <h4>Votre prénom:*</h4>
+        <input type="text" id="prenom" class="form-control" name="prenom"  ngModel required>
+        <h4>Votre entreprise:</h4>
+        <input type="text" id="entreprise" class="form-control" name="entreprise"  ngModel>
+        <h4>Votre e-mail:*</h4>
+        <input type="email" id="mail" class="form-control" name="mail"  ngModel required>
+        <h4>Votre téléphone:</h4>
+        <input type="tel" id="telephone" class="form-control" name="telephone"  ngModel>
+
+
+        <button type="button" class="btn btn-primary" [disabled]="b.invalid" type="submit">Valider</button>
+      </form>
+  </div>
+
+  <h1 *ngIf="etape ==15">Votre demande a bien été prise en compte</h1>
+
+
+
+</span>
+
+<button *ngIf="etape <15" type="button" class="btn btn-dark" (click)="precedent()" >Précédent</button>
+
+
+
+

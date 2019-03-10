@@ -1,0 +1,39 @@
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <ul class="nav navbar-nav">
+      <li routerLinkActive="active">
+        <a routerLink="">Effectuer une demande</a>
+      </li>
+    </ul>
+    <ul class="nav navbar-nav navbar-right">
+
+
+      <li>
+        <a (click)="onSignOut()"
+           style="cursor:pointer"
+           *ngIf="isAuth">Déconnexion</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+
+<div class="row">
+  <div class="col-xs-12">
+    <h2>Vos livres</h2>
+    <div class="list-group">
+
+        <div *ngFor="let book of books; let i = index">
+        <h3 class="list-group-item-heading">
+          {{ book._prenom }}
+          {{ book._telephone }}
+          <!--<button class="btn btn-default pull-right" (click)="onDeleteBook(book)">-->
+          <!--  <span class="glyphicon glyphicon-minus"></span>
+          </button>-->
+        </h3>
+        <p class="list-group-item-text">{{ book.mail }}</p>
+        </div>
+    </div>
+    <button class="btn btn-primary" (click)="onNewBook()">Nouveau livre</button>
+  </div>
+</div>
